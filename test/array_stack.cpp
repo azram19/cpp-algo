@@ -35,6 +35,17 @@ BOOST_AUTO_TEST_CASE( Pop )
   BOOST_CHECK_EQUAL( as->pop(), 1 );
 }
 
+BOOST_AUTO_TEST_CASE( Resize )
+{
+  ArrayStack * as = new ArrayStack();
+
+  for( int i = 0; i < 512; i++ ){
+    as -> push( i );
+  }
+
+  BOOST_CHECK( as->size() == 512 );
+}
+
 BOOST_AUTO_TEST_CASE( Empty )
 {
   ArrayStack * as = new ArrayStack();
