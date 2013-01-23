@@ -1,6 +1,15 @@
 .PHONY: clean test all
 
-all: data/array_stack
+all: data/array_stack data/array_queue
+
+data/array_queue: data/queue.o data/array_queue.o
+	g++ -W -Wall -Wextra -pedantic -std=c++0x data/array_queue.o test/array_queue.cpp -o test/bin/arrayqueue -lboost_unit_test_framework
+
+data/queue.o: data/queue.hpp
+	g++ -W -Wall -Wextra -pedantic -std=c++0x -c data/queue.hpp -o data/queue.o
+
+data/array_queue.o: data/array_queue.cpp
+	g++ -W -Wall -Wextra -pedantic -std=c++0x -c data/array_queue.cpp -o data/array_queue.o
 
 data/array_stack: data/stack.o data/array_stack.o
 	g++ -W -Wall -Wextra -pedantic -std=c++0x data/array_stack.o test/array_stack.cpp -o test/bin/arraystack -lboost_unit_test_framework
